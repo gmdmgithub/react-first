@@ -1,4 +1,16 @@
+# Origin
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Prerequisites - skip if not applicable
+
+```sh
+$ npm init
+# essential is have global installation of create-react-app
+$ npm i -g create-react-app
+# then create new application
+$ create-react-app hello-world
+```
 
 ## Available Scripts
 
