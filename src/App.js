@@ -16,12 +16,13 @@ class App extends Component {
     console.log("Was clicked");
     //this.state.persons[1].name = "Alexander";
     this.setState({
-      persons: [
-        { name: "Greg", age: 34 },
-        { name: "Amelia", age: 23 },
-        { name: "Daniel", age: 39 }
-      ],
+      persons: [{ name: "Greg", age: 34 }, { name: "Amelia", age: 23 }],
       label: newLabel
+    });
+  };
+  nameChangerHandler = event => {
+    this.setState({
+      label: "New label from event " + event.target.value
     });
   };
 
@@ -41,7 +42,6 @@ class App extends Component {
           I like swimming
         </Person>
         <Person name="Helen" age="29" />
-        <Person name="Joe" age="43" />
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
@@ -52,13 +52,11 @@ class App extends Component {
           click={() =>
             this.switchNamehendler("Different way - not with binding!")
           }
+          changed={this.nameChangerHandler}
+          label={this.state.label}
         >
           {this.state.label}
         </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
       </div>
     );
 
