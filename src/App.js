@@ -7,11 +7,21 @@ class App extends Component {
       { name: "Greg", age: 34 },
       { name: "Adam", age: 23 },
       { name: "Daniel", age: 40 }
-    ]
+    ],
+    label: "some label",
+    toggle: false
   };
 
   switchNamehendler = () => {
     console.log("Was clicked");
+    //this.state.persons[1].name = "Alexander";
+    this.setState({
+      persons: [
+        { name: "Greg", age: 34 },
+        { name: "Amelia", age: 23 },
+        { name: "Daniel", age: 39 }
+      ]
+    });
   };
 
   render() {
@@ -34,7 +44,10 @@ class App extends Component {
         <Person
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
-        />
+          click={this.switchNamehendler}
+        >
+          {this.state.label}
+        </Person>
         <Person
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
