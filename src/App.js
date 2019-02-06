@@ -12,7 +12,7 @@ class App extends Component {
     toggle: false
   };
 
-  switchNamehendler = () => {
+  switchNamehendler = newLabel => {
     console.log("Was clicked");
     //this.state.persons[1].name = "Alexander";
     this.setState({
@@ -20,7 +20,8 @@ class App extends Component {
         { name: "Greg", age: 34 },
         { name: "Amelia", age: 23 },
         { name: "Daniel", age: 39 }
-      ]
+      ],
+      label: newLabel
     });
   };
 
@@ -30,7 +31,11 @@ class App extends Component {
         <h1> Hello from react blueprint app</h1>
         <p>Remember one root element per component</p>
         <p>class word is restricted in typescript so className is used</p>
-        <button onClick={this.switchNamehendler}>Switch the name</button>
+        <button
+          onClick={this.switchNamehendler.bind(this, "New label more fancy")}
+        >
+          Switch the name
+        </button>
 
         <Person name="Alex" age="32">
           I like swimming
@@ -44,7 +49,9 @@ class App extends Component {
         <Person
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
-          click={this.switchNamehendler}
+          click={() =>
+            this.switchNamehendler("Different way - not with binding!")
+          }
         >
           {this.state.label}
         </Person>
