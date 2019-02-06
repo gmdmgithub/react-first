@@ -27,12 +27,21 @@ class App extends Component {
   };
 
   render() {
+    const style = {
+      backgroundColor: "white",
+      border: "1px solid gray",
+      padding: "5px 20px",
+      borderRadius: "10px",
+      cursor: "pointer"
+    };
+
     return (
       <div className="App">
         <h1> Hello from react blueprint app</h1>
         <p>Remember one root element per component</p>
         <p>class word is restricted in typescript so className is used</p>
         <button
+          style={style}
           onClick={this.switchNamehendler.bind(this, "New label more fancy")}
         >
           Switch the name
@@ -53,7 +62,7 @@ class App extends Component {
             this.switchNamehendler("Different way - not with binding!")
           }
           changed={this.nameChangerHandler}
-          label={this.state.label}
+          label={this.state.labelgit}
         >
           {this.state.label}
         </Person>
