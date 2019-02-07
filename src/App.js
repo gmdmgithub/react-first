@@ -34,6 +34,14 @@ class App extends Component {
       togglePerson: !this.state.togglePerson
     });
   };
+  deletePersonHendler = index => {
+    console.log("delete person", index);
+    const persons = this.state.persons;
+    persons.splice(index, 1);
+    this.setState({
+      persons: persons
+    });
+  };
 
   //main method - important method
   render() {
@@ -60,7 +68,7 @@ class App extends Component {
     };
 
     let newPerson = null;
-
+    //more elegant if statement
     if (this.state.togglePerson) {
       newPerson = (
         <Person name="New Greg" age="38" changed={this.labelChangerHandler}>
@@ -73,8 +81,14 @@ class App extends Component {
     if (this.state.togglePerson) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                name={person.name}
+                age={person.age}
+                delete={this.deletePersonHendler.bind(this, index)}
+              />
+            );
           })}
         </div>
       );
@@ -112,7 +126,9 @@ class App extends Component {
               )
             }
           >
-            I like swimming
+            {/*what is placed here is 
+            passed as props.children*/}I
+            like swimming?
           </Person>
         ) : null}
         {/*end of if with question mark */}

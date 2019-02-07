@@ -8,7 +8,9 @@ const person = props => {
         Hi my name is {props.name} I like {Math.floor(Math.random() * 100)}{" "}
         number, I'm {props.age}
       </p>
-      <p>{props.children}</p>
+      {props.delete ? <p onClick={props.delete}>I delete this person</p> : null}
+      {/*props.children is a special keyword reserved*/}
+      <p> {props.children} </p>
       <input type="text" onChange={props.changed} value={props.label} />
     </div>
   );
