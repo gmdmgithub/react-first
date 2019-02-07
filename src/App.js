@@ -8,19 +8,23 @@ class App extends Component {
       { name: "Adam", age: 23 },
       { name: "Daniel", age: 40 }
     ],
-    label: "some label",
+    label: "Initial label from state",
     togglePerson: true
   };
 
-  switchNamehendler = newLabel => {
+  switchPersonAndLabel = newLabel => {
     console.log("Was clicked");
     //this.state.persons[1].name = "Alexander";
     this.setState({
-      persons: [{ name: "Greg", age: 34 }, { name: "Amelia", age: 23 }],
+      persons: [
+        { name: "Greg", age: 34 },
+        { name: "Amelia", age: 23 },
+        { name: "Kristine", age: 21 }
+      ],
       label: newLabel
     });
   };
-  nameChangerHandler = event => {
+  labelChangerHandler = event => {
     this.setState({
       label: "New label from event " + event.target.value
     });
@@ -59,9 +63,20 @@ class App extends Component {
 
     if (this.state.togglePerson) {
       newPerson = (
-        <Person name="New Greg" age="38">
-          I like football!
+        <Person name="New Greg" age="38" changed={this.labelChangerHandler}>
+          {this.state.label}
         </Person>
+      );
+    }
+
+    let persons = null;
+    if (this.state.togglePerson) {
+      persons = (
+        <div>
+          {this.state.persons.map(person => {
+            return <Person name={person.name} age={person.age} />;
+          })}
+        </div>
       );
     }
 
@@ -73,7 +88,10 @@ class App extends Component {
         <div style={dstyle}>
           <button
             style={style}
-            onClick={this.switchNamehendler.bind(this, "New label more fancy")}
+            onClick={this.switchPersonAndLabel.bind(
+              this,
+              "New label more fancy from button"
+            )}
           >
             Switch the name
           </button>
@@ -85,7 +103,15 @@ class App extends Component {
         </div>
         {/* if statement with question mark and :*/}
         {this.state.togglePerson ? (
-          <Person name="Alex" age="32">
+          <Person
+            name="Alex"
+            age="32"
+            click={() =>
+              this.switchPersonAndLabel(
+                "Different way - not with binding from person!"
+              )
+            }
+          >
             I like swimming
           </Person>
         ) : null}
@@ -93,22 +119,7 @@ class App extends Component {
 
         {/* if if different style */}
         {newPerson}
-
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={() =>
-            this.switchNamehendler("Different way - not with binding!")
-          }
-          changed={this.nameChangerHandler}
-          label={this.state.labelgit}
-        >
-          {this.state.label}
-        </Person>
+        {persons}
       </div>
     );
     //below it shows how to return directly with html elements
