@@ -31,6 +31,7 @@ class App extends Component {
     });
   };
 
+  //main method - important method
   render() {
     /*two way of styling 
       - one className = "file" 
@@ -53,6 +54,16 @@ class App extends Component {
     const dstyle = {
       margin: "10px 0px"
     };
+
+    let newPerson = null;
+
+    if (this.state.togglePerson) {
+      newPerson = (
+        <Person name="New Greg" age="38">
+          I like football!
+        </Person>
+      );
+    }
 
     return (
       <div className="App">
@@ -78,6 +89,11 @@ class App extends Component {
             I like swimming
           </Person>
         ) : null}
+        {/*end of if with question mark */}
+
+        {/* if if different style */}
+        {newPerson}
+
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
