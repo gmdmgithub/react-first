@@ -9,7 +9,7 @@ class App extends Component {
       { name: "Daniel", age: 40 }
     ],
     label: "some label",
-    toggle: false
+    togglePerson: true
   };
 
   switchNamehendler = newLabel => {
@@ -25,8 +25,17 @@ class App extends Component {
       label: "New label from event " + event.target.value
     });
   };
+  togglePerson = () => {
+    this.setState({
+      togglePerson: !this.state.togglePerson
+    });
+  };
 
   render() {
+    /*two way of styling 
+      - one className = "file" 
+      -second below inline style - remember style in js way - means no "-" but camel
+    */
     const style = {
       backgroundColor: "white",
       border: "1px solid gray",
@@ -34,23 +43,41 @@ class App extends Component {
       borderRadius: "10px",
       cursor: "pointer"
     };
+    const bstyle = {
+      backgroundColor: "green",
+      border: "1px solid green",
+      padding: "5px 20px",
+      borderRadius: "5px",
+      cursor: "pointer"
+    };
+    const dstyle = {
+      margin: "10px 0px"
+    };
 
     return (
       <div className="App">
         <h1> Hello from react blueprint app</h1>
         <p>Remember one root element per component</p>
         <p>class word is restricted in typescript so className is used</p>
-        <button
-          style={style}
-          onClick={this.switchNamehendler.bind(this, "New label more fancy")}
-        >
-          Switch the name
-        </button>
-
-        <Person name="Alex" age="32">
-          I like swimming
-        </Person>
-        <Person name="Helen" age="29" />
+        <div style={dstyle}>
+          <button
+            style={style}
+            onClick={this.switchNamehendler.bind(this, "New label more fancy")}
+          >
+            Switch the name
+          </button>
+        </div>
+        <div style={dstyle}>
+          <button style={bstyle} onClick={this.togglePerson.bind(this)}>
+            Show/Hide person
+          </button>
+        </div>
+        {/* if statement with question mark and :*/}
+        {this.state.togglePerson ? (
+          <Person name="Alex" age="32">
+            I like swimming
+          </Person>
+        ) : null}
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
@@ -68,7 +95,7 @@ class App extends Component {
         </Person>
       </div>
     );
-
+    //below it shows how to return directly with html elements
     // return React.createElement('div', {
     //   className: 'App'
     // }, React.createElement('h1', null, 'Hello from React another way - equivalent'));

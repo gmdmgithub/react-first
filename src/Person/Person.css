@@ -2,9 +2,10 @@
     width: 60%;
     margin: 10px auto;
     padding: 10px;
-    box-shadow: 2px 3px 3px #ccc;
+    box-shadow: 8px 6px 9px 2px #ccc;
     text-align: center;
     border: 1px solid gray;
+    border-radius: 10px;
 }
 
 .Person input {
