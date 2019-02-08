@@ -4,9 +4,9 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { name: "Greg", age: 34 },
-      { name: "Adam", age: 23 },
-      { name: "Daniel", age: 40 }
+      { id: 1, name: "Greg", age: 34 },
+      { id: 2, name: "Adam", age: 23 },
+      { id: 3, name: "Daniel", age: 40 }
     ],
     label: "Initial label from state",
     togglePerson: true
@@ -17,9 +17,9 @@ class App extends Component {
     //this.state.persons[1].name = "Alexander";
     this.setState({
       persons: [
-        { name: "Greg", age: 34 },
-        { name: "Amelia", age: 23 },
-        { name: "Kristine", age: 21 }
+        { id: 1, name: "Greg", age: 34 },
+        { id: 2, name: "Amelia", age: 23 },
+        { id: 3, name: "Kristine", age: 21 }
       ],
       label: newLabel
     });
@@ -36,7 +36,7 @@ class App extends Component {
   };
   deletePersonHendler = index => {
     console.log("delete person", index);
-    const persons = this.state.persons;
+    const persons = [...this.state.persons];
     persons.splice(index, 1);
     this.setState({
       persons: persons
@@ -87,6 +87,7 @@ class App extends Component {
                 name={person.name}
                 age={person.age}
                 delete={this.deletePersonHendler.bind(this, index)}
+                key={person.id}
               />
             );
           })}
