@@ -12,6 +12,8 @@ const person = props => {
       {/*props.children is a special keyword reserved*/}
       <p> {props.children} </p>
       <input type="text" onChange={props.changed} value={props.label} />
+      <br />
+      <input type="text" onChange={props.change} value={props.name} />
     </div>
   );
 };

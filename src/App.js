@@ -29,6 +29,43 @@ class App extends Component {
       label: "New label from event " + event.target.value
     });
   };
+  nameChangerHendler = (event, id) => {
+    //console.log(event, id);
+    const persons = [...this.state.persons];
+    persons.map(person => {
+      if (person.id === id) {
+        person.name = event.target.value;
+      }
+      return person;
+    });
+    this.setState({
+      persons: persons
+    });
+  };
+
+  nameChangerIndexHendler = (event, id) => {
+    //console.log(event, id);
+    const personIndex = this.state.persons.findIndex(
+      person => person.id === id
+    );
+
+    //standard way to copy object by value
+    //const person = Object.assign({},this,state.persons[personIndex])
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+
+    persons[personIndex] = person;
+
+    this.setState({
+      persons: persons
+    });
+  };
+
   togglePerson = () => {
     this.setState({
       togglePerson: !this.state.togglePerson
@@ -88,6 +125,9 @@ class App extends Component {
                 age={person.age}
                 delete={this.deletePersonHendler.bind(this, index)}
                 key={person.id}
+                change={event => {
+                  this.nameChangerIndexHendler(event, person.id);
+                }}
               />
             );
           })}
