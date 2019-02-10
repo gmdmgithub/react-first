@@ -11,6 +11,13 @@ const person = props => {
   //   }
   // };
 
+  //example for throwing error - and hanling in nice manner
+  const condition = Math.random();
+
+  if(condition >0.97){ //small chances for error - just for testing
+    throw new Error("Number is too big")
+  }
+
   return (
     <div className="Person">
       <p className={moduleS.module_sample} onClick={props.click}>

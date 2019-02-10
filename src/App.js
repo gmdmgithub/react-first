@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
 import Radium, { StyleRoot } from "radium";
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 class App extends Component {
   state = {
     persons: [
@@ -128,16 +129,18 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
+            //ErrorBoundary is called high order component, and also key have to be moved to this component
+            //key has to be on the most outer component
             return (
-              <Person
+              <ErrorBoundary key={person.id}><Person
                 name={person.name}
                 age={person.age}
                 delete={this.deletePersonHendler.bind(this, index)}
-                key={person.id}
+                
                 change={event => {
                   this.nameChangerIndexHendler(event, person.id);
                 }}
-              />
+              /></ErrorBoundary>
             );
           })}
         </div>
@@ -159,6 +162,7 @@ class App extends Component {
           <p className={paragraphStyle}>
             Remember one root element per component
           </p>
+          
           <p className={styles}>
             class word is restricted in typescript so className is used
           </p>
