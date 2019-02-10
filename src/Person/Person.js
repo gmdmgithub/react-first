@@ -3,9 +3,16 @@ import "./Person.css";
 import Radium from "radium";
 
 const person = props => {
+  //using Radium for @media query
+  const style = {
+    "@media (min-width: 450px)": {
+      color: "blue"
+    }
+  };
+
   return (
     <div className="Person">
-      <p onClick={props.click}>
+      <p onClick={props.click} style={style}>
         Hi my name is {props.name} I like {Math.floor(Math.random() * 100)}{" "}
         number, I'm {props.age}
       </p>

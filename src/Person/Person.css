@@ -11,3 +11,13 @@
 .Person input {
     width: 300px;
 }
+
+@media (max-width: 550px) {
+    .Person {
+        width: 90%;
+    }
+
+    .Person input {
+        width: 70%;
+    }
+}

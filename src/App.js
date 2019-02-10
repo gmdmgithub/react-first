@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium from "radium";
+import Radium, { StyleRoot } from "radium";
 class App extends Component {
   state = {
     persons: [
@@ -153,52 +153,54 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1> Hello from react blueprint app</h1>
-        <p className={paragraphStyle}>
-          Remember one root element per component
-        </p>
-        <p className={styles}>
-          class word is restricted in typescript so className is used
-        </p>
-        <div style={dstyle}>
-          <button
-            style={style}
-            onClick={this.switchPersonAndLabel.bind(
-              this,
-              "New label more fancy from button"
-            )}
-          >
-            Switch the name
-          </button>
-        </div>
-        <div style={dstyle}>
-          <button style={bstyle} onClick={this.togglePerson.bind(this)}>
-            Show/Hide person
-          </button>
-        </div>
-        {/* if statement with question mark and :*/}
-        {this.state.togglePerson ? (
-          <Person
-            name="Alex"
-            age="32"
-            click={() =>
-              this.switchPersonAndLabel(
-                "Different way - not with binding from person!"
-              )
-            }
-          >
-            {/*what is placed here is 
+      <StyleRoot>
+        <div className="App">
+          <h1> Hello from react blueprint app</h1>
+          <p className={paragraphStyle}>
+            Remember one root element per component
+          </p>
+          <p className={styles}>
+            class word is restricted in typescript so className is used
+          </p>
+          <div style={dstyle}>
+            <button
+              style={style}
+              onClick={this.switchPersonAndLabel.bind(
+                this,
+                "New label more fancy from button"
+              )}
+            >
+              Switch the name
+            </button>
+          </div>
+          <div style={dstyle}>
+            <button style={bstyle} onClick={this.togglePerson.bind(this)}>
+              Show/Hide person
+            </button>
+          </div>
+          {/* if statement with question mark and :*/}
+          {this.state.togglePerson ? (
+            <Person
+              name="Alex"
+              age="32"
+              click={() =>
+                this.switchPersonAndLabel(
+                  "Different way - not with binding from person!"
+                )
+              }
+            >
+              {/*what is placed here is 
             passed as props.children*/}I
-            like swimming?
-          </Person>
-        ) : null}
-        {/*end of if with question mark */}
+              like swimming?
+            </Person>
+          ) : null}
+          {/*end of if with question mark */}
 
-        {/* if if different style */}
-        {newPerson}
-        {persons}
-      </div>
+          {/* if if different style */}
+          {newPerson}
+          {persons}
+        </div>
+      </StyleRoot>
     );
     //below it shows how to return directly with html elements
     // return React.createElement('div', {
