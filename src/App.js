@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import Radium from "radium";
 class App extends Component {
   state = {
     persons: [
@@ -85,6 +86,7 @@ class App extends Component {
     /*two way of styling 
       - one className = "file" 
       -second below inline style - remember style in js way - means no "-" but camel
+      Radium is used for hover(sudo classes)
     */
     const style = {
       backgroundColor: "blue",
@@ -92,7 +94,11 @@ class App extends Component {
       border: "1px solid gray",
       padding: "5px 20px",
       borderRadius: "10px",
-      cursor: "pointer"
+      cursor: "pointer",
+      ":hover": {
+        backgroundColor: "yellow",
+        color: "black"
+      }
     };
     const bstyle = {
       backgroundColor: "green",
@@ -139,6 +145,10 @@ class App extends Component {
       bstyle.backgroundColor = "red";
       if (this.state.persons.length > 2) {
         paragraphStyle = "papp";
+        style[":hover"] = {
+          backgroundColor: "brown",
+          color: "white"
+        };
       }
     }
 
@@ -197,4 +207,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
