@@ -87,7 +87,8 @@ class App extends Component {
       -second below inline style - remember style in js way - means no "-" but camel
     */
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "blue",
+      color: "white",
       border: "1px solid gray",
       padding: "5px 20px",
       borderRadius: "10px",
@@ -115,6 +116,8 @@ class App extends Component {
     }
 
     let persons = null;
+    let paragraphStyle = null;
+    let styles = ["bold", "color-green"].join(" ");
     if (this.state.togglePerson) {
       persons = (
         <div>
@@ -133,13 +136,21 @@ class App extends Component {
           })}
         </div>
       );
+      bstyle.backgroundColor = "red";
+      if (this.state.persons.length > 2) {
+        paragraphStyle = "papp";
+      }
     }
 
     return (
       <div className="App">
         <h1> Hello from react blueprint app</h1>
-        <p>Remember one root element per component</p>
-        <p>class word is restricted in typescript so className is used</p>
+        <p className={paragraphStyle}>
+          Remember one root element per component
+        </p>
+        <p className={styles}>
+          class word is restricted in typescript so className is used
+        </p>
         <div style={dstyle}>
           <button
             style={style}
